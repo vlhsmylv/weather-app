@@ -9,6 +9,10 @@ import Head from "next/head";
 
 const API_KEY = "6bff5757441168795c7c422284011b5d"
 
+import months from "../../data/months";
+import getDate from "../../scripts/getDate";
+import Loading from "../../components/loading/Loading";
+
 export default function City() {
     const router = useRouter();
 
@@ -16,8 +20,6 @@ export default function City() {
 
     const [ weather, setWeather ] = useState({});
     const [ date, setDate ] = useState({});
-
-    const months = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'İyun', 'İyul', 'Avqust', 'Sentyabr', 'Oktyabr', 'Noyabr', 'Dekabr'];
 
     const userMessage = {
         Clear: `Bu gün ${city} ərazisində hava günəşlidir. Nazik geyinməyə üstünlük verin.`,
@@ -39,25 +41,13 @@ export default function City() {
         }
     }
 
-    const getDate = () => {
-        const date = new Date();
-
-        const dateSet = {
-            day: date.getDate(),
-            month: date.getMonth(),
-            year: date.getFullYear()
-        }
-
-        setDate(dateSet);
-    }
-
     useEffect(() => {
         if(router.isReady) {
             const { city } = router.query;
 
             setCity(city);
             getWeather(city);
-            getDate();
+            setDate(getDate());
         }
     }, [router.isReady])
 
@@ -74,9 +64,7 @@ export default function City() {
             <div className={"container"}>
                 {
                     Object.keys(weather).length === 0 ? (
-                        <div className={"loading"}>
-                            <Image src={"/svg/loading.svg"} layout={"fixed"} width={"128px"} height={"128px"} />
-                        </div>
+                        <Loading />
                     ) : (
                         <>{weather.type === "error" ? (
                             <div className={"error-container"}>
