@@ -28,7 +28,7 @@ export default function City() {
 
     const getWeather = async (city) => {
         try {
-            const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+            const { data } = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
 
             setWeather(data);
         } catch (error) {
