@@ -42,7 +42,7 @@ export default function Home() {
         <style jsx>
             {`
               main {
-                height: 95vh;
+                height: 87vh;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;

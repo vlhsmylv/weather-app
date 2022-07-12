@@ -105,7 +105,7 @@ export default function City() {
                     display: flex;
                     flex-direction: column;
                     gap: 30px;
-                    height: 95vh;
+                    height: 87vh;
                     justify-content: center;
                     align-items: center;
                   }
